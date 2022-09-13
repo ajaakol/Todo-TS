@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { StyleSheet, Text, View, TextInput, Button } from "react-native";
+import { StyleSheet, Text, View, TextInput, Button, Pressable } from "react-native";
 
 interface IToDo {
   text: string;
@@ -44,19 +44,23 @@ export default function App() {
       {/* {toDoList.length === 0 && <Text>No to do task available</Text>} */}
       {toDoList.map((toDo: IToDo, index: number) => (
         <View style={styles.listItem} key={`${index}_${toDo.text}`}>
+          <Pressable  onPress={() => toggleComplete(index)} style={{width: 200}}>
           <Text
             style={[
               styles.task,
               { textDecorationLine: toDo.completed ? "line-through" : "none" }
             ]}
           >
+            {index}
             {toDo.text}
           </Text>
-          <Button
+
+          </Pressable>
+          {/* <Button
             title={toDo.completed ? "Completed" : "Complete"}
             onPress={() => toggleComplete(index)}
             color={toDo.completed ? 'red' : 'blue'}
-          />
+          /> */}
          
         </View>
       ))}
